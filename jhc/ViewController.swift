@@ -44,6 +44,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         var option = ""
         let selection = "\(sender.title)"
         switch selection {
+        case "Center":
+            option = ""
         case "Upper Left":
             option = "ul"
         case "Upper Right":
@@ -53,7 +55,11 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         default:
             option = "lr"
         }
-        jamfHelperOptions["-windowPosition"] = option
+        if option != "" {
+            jamfHelperOptions["-windowPosition"] = option
+        } else {
+            jamfHelperOptions["-windowPosition"] = nil
+        }
         generateCommand()
     }
     
@@ -270,6 +276,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             countdownAlignJustified_button.isEnabled = true
             countdownAlignNatural_button.isEnabled   = true
         }
+        generateCommand()
     }
     
     @IBOutlet weak var countdownAlignLeft_button: NSButton!
@@ -310,6 +317,40 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBOutlet var currentCommant_textview: NSTextView!
+    
+    @IBAction func preview_button(_ sender: Any) {
+        
+        let previewQ     = DispatchQueue(label: "com.jamf.previewQ", qos: DispatchQoS.background)
+        var optionsArray = [String]()
+//        var localStatus  = [String]()
+//        let pipe    = Pipe()
+        let task    = Process()
+        task.launchPath     = "/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper"
+        
+        for (option, value) in jamfHelperOptions {
+            optionsArray.append("\(option)")
+            if "\(value)" != "" {
+                optionsArray.append("\(value)")
+            }
+        }
+        
+        task.arguments      = optionsArray
+
+        previewQ.async {
+
+            task.launch()
+            
+            sleep(5)
+
+            let task_kill        = Process()
+            task_kill.launchPath = "/usr/bin/killall"
+            task_kill.arguments  = ["jamfHelper"]
+            task_kill.launch()
+            task_kill.waitUntilExit()
+        
+        }
+    }
+    
     
     let jamfHelperBinary = "/Library/Application\\ Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper"
     var jamfHelperOptions = [String:Any]()
@@ -440,7 +481,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         currentCommant_textview.font = NSFont(name: "Courier", size: CGFloat(14))
         
         jamfHelperOptions["-windowType"] = "hud"
-        jamfHelperOptions["-windowPosition"] = "ul"
+//        jamfHelperOptions["-windowPosition"] = "ul"
         generateCommand()
     }
 

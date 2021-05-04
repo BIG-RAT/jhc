@@ -771,12 +771,13 @@
                                     <constraint firstAttribute="width" constant="146" id="RUq-Wz-ZnF"/>
                                     <constraint firstAttribute="height" constant="20" id="rUU-7l-ih4"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title="Upper Left" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cmq-PW-Xft" id="MHn-nt-m9d" userLabel="WindowPosition">
+                                <popUpButtonCell key="cell" type="push" title="Center" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cmq-PW-Xft" id="MHn-nt-m9d" userLabel="WindowPosition">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="sux-Jy-uOV">
                                         <items>
-                                            <menuItem title="Upper Left" id="cmq-PW-Xft"/>
+                                            <menuItem title="Center" identifier="center" id="cmq-PW-Xft"/>
+                                            <menuItem title="Upper Left" id="kIw-6V-eoV"/>
                                             <menuItem title="Upper Right" id="ADa-bA-t3A" userLabel="Upper Right">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
@@ -1049,12 +1050,15 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="euy-g9-wlG">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="euy-g9-wlG">
                                 <rect key="frame" x="757" y="13" width="82" height="32"/>
                                 <buttonCell key="cell" type="push" title="Preview" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LX6-yT-Me0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="preview_button:" target="XfG-lQ-9wD" id="ugh-BH-iNP"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PnP-GU-igG">
                                 <rect key="frame" x="520" y="505" width="56" height="18"/>

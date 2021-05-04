@@ -267,6 +267,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             countdownAlignJustified_button.isEnabled = false
             countdownAlignNatural_button.isEnabled   = false
             resetCountdownAlign()
+            jamfHelperOptions["-countdown"]      = nil
             jamfHelperOptions["-alignCountdown"] = nil
             generateCommand()
         } else {
@@ -275,6 +276,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             countdownAlignRight_button.isEnabled     = true
             countdownAlignJustified_button.isEnabled = true
             countdownAlignNatural_button.isEnabled   = true
+            jamfHelperOptions["-countdown"] = ""
         }
         generateCommand()
     }
@@ -340,7 +342,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
 
             task.launch()
             
-            sleep(5)
+            sleep(15)
 
             let task_kill        = Process()
             task_kill.launchPath = "/usr/bin/killall"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -924,7 +925,7 @@
                                     <action selector="defaultbutton_action:" target="XfG-lQ-9wD" id="dEs-Jp-uVA"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yP1-Op-eW0">
+                            <button identifier="button1" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yP1-Op-eW0">
                                 <rect key="frame" x="698" y="396" width="18" height="18"/>
                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="G07-yc-CPN">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -945,7 +946,7 @@
                                     <action selector="defaultbutton_action:" target="XfG-lQ-9wD" id="Q1K-Uk-2vW"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="je1-VX-vr7">
+                            <button identifier="button2" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="je1-VX-vr7">
                                 <rect key="frame" x="698" y="348" width="18" height="18"/>
                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="BDY-Ff-IuY">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1063,7 +1064,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="icon_button:" target="XfG-lQ-9wD" id="nsV-1K-RHH"/>
+                                    <action selector="icon_action:" target="XfG-lQ-9wD" id="8br-oW-gPo"/>
                                 </connections>
                             </button>
                             <button identifier="Heading.left" toolTip="left" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K7X-AC-POe">
@@ -1214,33 +1215,6 @@
                                     <action selector="iconSize_slider:" target="XfG-lQ-9wD" id="ZLB-gs-aSk"/>
                                 </connections>
                             </slider>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f4E-9H-1XN">
-                                <rect key="frame" x="667" y="480" width="49" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="custom" id="GlP-dp-tVY">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1i-ld-vyI">
-                                <rect key="frame" x="748" y="480" width="67" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="full screen" id="WlG-X2-rwY">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wu2-mq-1Vn">
-                                <rect key="frame" x="580" y="480" width="47" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="default" id="Cbp-KH-xX2">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField identifier="iconSize" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NRK-Xz-UtR">
                                 <rect key="frame" x="643" y="436" width="96" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1346,6 +1320,39 @@
                                     <action selector="copy_Button:" target="XfG-lQ-9wD" id="Ya2-Fu-y2K"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8c7-NW-GVV">
+                                <rect key="frame" x="668" y="479" width="46" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundRect" title="custom" bezelStyle="roundedRect" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="0Ca-IQ-z2B">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="slider_action:" target="XfG-lQ-9wD" id="iK5-u2-ZQ8"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="me2-Cu-zfW">
+                                <rect key="frame" x="745" y="479" width="64" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundRect" title="full screen" bezelStyle="roundedRect" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="CLY-qM-ihZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="slider_action:" target="XfG-lQ-9wD" id="4cY-V9-GUr"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pi4-ZW-7xY">
+                                <rect key="frame" x="578" y="479" width="44" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundRect" title="default" bezelStyle="roundedRect" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="Cx5-cQ-PXi">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="slider_action:" target="XfG-lQ-9wD" id="l1G-Yc-4tY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="0jd-43-7Sr" firstAttribute="top" secondItem="Crh-EN-hhP" secondAttribute="bottom" constant="41" id="06Y-rX-vfw"/>
@@ -1440,9 +1447,9 @@
                         <outlet property="description_textfield" destination="KfU-bD-5LN" id="PsT-if-yqj"/>
                         <outlet property="heading_textfield" destination="q6N-T9-kag" id="MUM-z1-0E5"/>
                         <outlet property="iconPath_button" destination="Iaa-OV-cfc" id="0jl-2j-UkB"/>
-                        <outlet property="iconSizeCustom_label" destination="f4E-9H-1XN" id="aT9-2E-OHm"/>
-                        <outlet property="iconSizeDefault_label" destination="wu2-mq-1Vn" id="QwD-jQ-aMb"/>
-                        <outlet property="iconSizeFullScreen_label" destination="i1i-ld-vyI" id="tbf-Ka-JgE"/>
+                        <outlet property="iconSizeCustom_label" destination="8c7-NW-GVV" id="j0y-JX-sWO"/>
+                        <outlet property="iconSizeDefault_label" destination="pi4-ZW-7xY" id="yEo-fu-Z67"/>
+                        <outlet property="iconSizeFullScreen_label" destination="me2-Cu-zfW" id="O4b-cN-3g3"/>
                         <outlet property="iconSizeSlider_button" destination="enf-2O-6jT" id="PRp-Be-oJa"/>
                         <outlet property="iconSize_label" destination="OYa-0x-Fqd" id="anp-Qs-gIY"/>
                         <outlet property="iconSize_textfield" destination="NRK-Xz-UtR" id="OQB-jj-5qw"/>

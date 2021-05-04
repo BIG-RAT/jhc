@@ -62,7 +62,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var description_textfield: NSTextField!
     
     @IBAction func textAlign_action(_ sender: NSButton) {
-        print("alignment button: \(sender.identifier!.rawValue)")
+//        print("alignment button: \(sender.identifier!.rawValue)")
         sender.isBordered = true
         var currentOptions = jamfHelperOptions.count
         let option = "\(sender.identifier!.rawValue)"
@@ -83,10 +83,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         }
     }
     
-    @IBAction func icon_button(_ sender: NSButton) {
+    @IBAction func icon_action(_ sender: NSButton) {
         if sender.state.rawValue == 0 {
             iconPath_button.isEnabled = false
-            iconDisplay(enable: false)
+            iconSizeLabel(enableState: false)
         } else {
             iconPath_button.isEnabled = true
         }
@@ -94,10 +94,34 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     
     @IBOutlet weak var iconPath_button: NSPathControl!
     @IBOutlet weak var iconSize_label: NSTextField!
-    @IBOutlet weak var iconSizeDefault_label: NSTextField!
-    @IBOutlet weak var iconSizeCustom_label: NSTextField!
-    @IBOutlet weak var iconSizeFullScreen_label: NSTextField!
+    @IBOutlet weak var iconSizeDefault_label: NSButton!
+    @IBOutlet weak var iconSizeCustom_label: NSButton!
+    @IBOutlet weak var iconSizeFullScreen_label: NSButton!
     @IBOutlet weak var iconSizeSlider_button: NSSlider!
+    
+    @IBAction func slider_action(_ sender: NSButton) {
+        switch sender.title {
+        case "default":
+            iconSizeSlider_button.intValue = 0
+            jamfHelperOptions["-iconSize"] = nil
+            iconSize_textfield.isEnabled = false
+            jamfHelperOptions["-fullScreenIcon"] = nil
+            iconSize_textfield.stringValue = ""
+        case "custom":
+            iconSizeSlider_button.intValue = 50
+            iconSize_textfield.isEnabled = true
+            jamfHelperOptions["-fullScreenIcon"] = nil
+        default:
+            // full screen
+            iconSizeSlider_button.intValue = 100
+            jamfHelperOptions["-iconSize"] = nil
+            iconSize_textfield.isEnabled = false
+            jamfHelperOptions["-fullScreenIcon"] = ""
+            iconSize_textfield.stringValue = ""
+        }
+        generateCommand()
+    }
+ 
     @IBAction func iconSize_slider(_ sender: NSButton) {
 //        print("\(sender.doubleValue)")
         switch sender.doubleValue {
@@ -105,6 +129,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             jamfHelperOptions["-iconSize"] = nil
             iconSize_textfield.isEnabled = false
             jamfHelperOptions["-fullScreenIcon"] = nil
+            iconSize_textfield.stringValue = ""
         case 50.0:
             iconSize_textfield.isEnabled = true
             jamfHelperOptions["-fullScreenIcon"] = nil
@@ -113,6 +138,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             jamfHelperOptions["-iconSize"] = nil
             iconSize_textfield.isEnabled = false
             jamfHelperOptions["-fullScreenIcon"] = ""
+            iconSize_textfield.stringValue = ""
         }
         generateCommand()
     }
@@ -266,12 +292,14 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     
     @IBAction func iconPath(_ sender: NSPathControl) {
         iconSizeSlider_button.isEnabled = true
-        print("icon set")
-        print("the path: \(sender.url!)")
-        let theURL = sender.url!
+//        print("icon set")
+//        print("the path: \(sender.url!)")
+//        let theURL = sender.url!
 //        let thePath = String(contentsOf: theURL)
-        print("thePath: \(theURL.path)")
+//        print("thePath: \(theURL.path)")
+        iconSizeLabel(enableState: true)
         jamfHelperOptions["-icon"] = "\"\(sender.url!.path)\""
+        iconSizeLabel(enableState: true)
         generateCommand()
     }
     
@@ -290,7 +318,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
         if let textField = obj.object as? NSTextField {
 //            let option = "\(textField.identifier!.rawValue)"
-            print("\(textField.identifier!.rawValue)")
+//            print("\(textField.identifier!.rawValue)")
              switch "\(textField.identifier!.rawValue)" {
              case "iconSize":
                 jamfHelperOptions["-iconSize"] = "\(iconSize_textfield.stringValue)"
@@ -367,6 +395,17 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         iconSizeSlider_button.isEnabled = enable
 //        iconSize_textfield.stringValue = ""
 //        iconSize_textfield.isEnabled = enable
+    }
+    
+    func iconSizeLabel(enableState: Bool) {
+        iconSizeDefault_label.isEnabled    = enableState
+        iconSizeCustom_label.isEnabled     = enableState
+        iconSizeFullScreen_label.isEnabled = enableState
+        iconSizeSlider_button.isEnabled    = enableState
+        iconSize_textfield.isEnabled       = enableState
+        if !enableState {
+            iconSize_textfield.stringValue = ""
+        }
     }
     
     func resetCountdownAlign() {

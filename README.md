@@ -1,6 +1,6 @@
 # jamfHelper Constructor
 
-Download: [jamfcpr](https://github.com/BIG-RAT/jhc/releases/download/current/jhc.zip)
+Download: [jhc](https://github.com/BIG-RAT/jhc/releases/download/current/jhc.zip)
 
 ![alt text](./images/jhc.png "jamfHelper Constructor")
 

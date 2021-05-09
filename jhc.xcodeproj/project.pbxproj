@@ -11,6 +11,7 @@
 		B58D1617263F62BD00BAD4DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D1616263F62BD00BAD4DE /* ViewController.swift */; };
 		B58D1619263F62C000BAD4DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58D1618263F62C000BAD4DE /* Assets.xcassets */; };
 		B58D161C263F62C000BAD4DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58D161A263F62C000BAD4DE /* Main.storyboard */; };
+		B5B80D0326482A9E001D4320 /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = B5B80D0226482A9E001D4320 /* Notes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		B58D161B263F62C000BAD4DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B58D161D263F62C000BAD4DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B58D161E263F62C000BAD4DE /* jhc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = jhc.entitlements; sourceTree = "<group>"; };
+		B5B80D0226482A9E001D4320 /* Notes */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				B58D161A263F62C000BAD4DE /* Main.storyboard */,
 				B58D161D263F62C000BAD4DE /* Info.plist */,
 				B58D161E263F62C000BAD4DE /* jhc.entitlements */,
+				B5B80D0226482A9E001D4320 /* Notes */,
 			);
 			path = jhc;
 			sourceTree = "<group>";
@@ -120,6 +123,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B80D0326482A9E001D4320 /* Notes in Resources */,
 				B58D1619263F62C000BAD4DE /* Assets.xcassets in Resources */,
 				B58D161C263F62C000BAD4DE /* Main.storyboard in Resources */,
 			);
@@ -282,7 +286,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.8.0;
+				MARKETING_VERSION = 0.8.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamfpse.jhc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -305,7 +309,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.8.0;
+				MARKETING_VERSION = 0.8.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamfpse.jhc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

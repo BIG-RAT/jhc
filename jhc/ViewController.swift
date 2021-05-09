@@ -64,15 +64,43 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBOutlet weak var title_textfield: NSTextField!
+    
     @IBOutlet weak var heading_textfield: NSTextField!
+    @IBOutlet weak var headerAlignLeft_button: NSButton!
+    @IBOutlet weak var headerAlignCenter_button: NSButton!
+    @IBOutlet weak var headerAlignRight_button: NSButton!
+    @IBOutlet weak var headerAlignJustified_button: NSButton!
+    @IBOutlet weak var headerAlignNatural_button: NSButton!
+    
     @IBOutlet weak var description_textfield: NSTextField!
+    @IBOutlet weak var descriptionAlignLeft_button: NSButton!
+    @IBOutlet weak var descriptionAlignCenter_button: NSButton!
+    @IBOutlet weak var descriptionAlignRight_button: NSButton!
+    @IBOutlet weak var descriptionAlignJustified_button: NSButton!
+    @IBOutlet weak var descriptionAlignNatural_button: NSButton!
     
     @IBAction func textAlign_action(_ sender: NSButton) {
 //        print("alignment button: \(sender.identifier!.rawValue)")
-        sender.isBordered = true
+//        sender.isBordered = true
+        
+        let textAlignArray = "\(sender.identifier!.rawValue)".split(separator: ".")
+        if textAlignArray[0] == "Heading" {
+            headerAlignLeft_button.isBordered      = (sender.identifier!.rawValue == "Heading.left") ? true:false
+            headerAlignCenter_button.isBordered    = (sender.identifier!.rawValue == "Heading.center") ? true:false
+            headerAlignRight_button.isBordered     = (sender.identifier!.rawValue == "Heading.right") ? true:false
+            headerAlignJustified_button.isBordered = (sender.identifier!.rawValue == "Heading.justified") ? true:false
+            headerAlignNatural_button.isBordered   = (sender.identifier!.rawValue == "Heading.natural") ? true:false
+        } else {
+            descriptionAlignLeft_button.isBordered      = (sender.identifier!.rawValue == "Description.left") ? true:false
+            descriptionAlignCenter_button.isBordered    = (sender.identifier!.rawValue == "Description.center") ? true:false
+            descriptionAlignRight_button.isBordered     = (sender.identifier!.rawValue == "Description.right") ? true:false
+            descriptionAlignJustified_button.isBordered = (sender.identifier!.rawValue == "Description.justified") ? true:false
+            descriptionAlignNatural_button.isBordered   = (sender.identifier!.rawValue == "Description.natural") ? true:false
+        }
+        
         var currentOptions = jamfHelperOptions.count
-        let option = "\(sender.identifier!.rawValue)"
-        let textAlignArray = option.split(separator: ".")
+//        let option = "\(sender.identifier!.rawValue)"
+//        let textAlignArray = option.split(separator: ".")
         jamfHelperOptions["-align\(textAlignArray[0])"] = "\(textAlignArray[1])"
         if heading_textfield.stringValue == "" {
             jamfHelperOptions["-alignHeading"] = nil
@@ -376,12 +404,14 @@ class ViewController: NSViewController, NSTextFieldDelegate {
              case "heading":
                  jamfHelperOptions["-heading"] = "\"\(heading_textfield.stringValue)\""
                  if jamfHelperOptions["-heading"] as! String == "\"\"" {
-                     jamfHelperOptions["-heading"] = nil
+                     jamfHelperOptions["-heading"]     = nil
+                    jamfHelperOptions["-alignHeading"] = nil
                  }
              case "description":
                 jamfHelperOptions["-description"] = "\"\(description_textfield.stringValue)\""
                 if jamfHelperOptions["-description"] as! String == "\"\"" {
-                    jamfHelperOptions["-description"] = nil
+                    jamfHelperOptions["-description"]      = nil
+                    jamfHelperOptions["-alignDescription"] = nil
                 }
              case "button1":
                 jamfHelperOptions["-button1"] = "\"\(button1Label_textfield.stringValue)\""

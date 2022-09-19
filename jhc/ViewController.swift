@@ -182,6 +182,9 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var button1_button: NSButton!
     @IBOutlet weak var button2_button: NSButton!
     
+    @IBOutlet weak var button1Label_textfield: NSTextField!
+    @IBOutlet weak var button2Label_textfield: NSTextField!
+    
     @IBAction func button1_action(_ sender: NSButton) {
         if sender.state.rawValue == 0 {
             button1Default_button.isEnabled  = false
@@ -192,6 +195,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             button2Default_button.isEnabled  = false
             button2Cancel_button.isEnabled   = false
             button2Label_textfield.stringValue = ""
+            jamfHelperOptions["-button1"]    = nil
+            generateCommand()
         } else {
             button1Default_button.isEnabled  = true
             button1Cancel_button.isEnabled   = true
@@ -199,8 +204,6 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             button2_button.isEnabled         = true
         }
     }
-    @IBOutlet weak var button1Label_textfield: NSTextField!
-    
     
     @IBAction func button2_action(_ sender: NSButton) {
         if sender.state.rawValue == 0 {
@@ -208,13 +211,14 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             button2Cancel_button.isEnabled   = false
             button2Label_textfield.stringValue = ""
             button2Label_textfield.isEnabled = false
+            jamfHelperOptions["-button2"]    = nil
+            generateCommand()
         } else {
             button2Default_button.isEnabled  = true
             button2Cancel_button.isEnabled   = true
             button2Label_textfield.isEnabled = true
         }
     }
-    @IBOutlet weak var button2Label_textfield: NSTextField!
     
     @IBOutlet weak var button1Default_button: NSButton!
     @IBOutlet weak var button1Cancel_button: NSButton!
@@ -222,7 +226,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var button2Cancel_button: NSButton!
     
     @IBAction func defaultbutton_action(_ sender: NSButton) {
-        if sender.identifier!.rawValue == "button1" {
+        if sender.identifier!.rawValue.contains("button1") {
             button2Default_button.state = NSControl.StateValue.off
             if sender.state.rawValue == 1 {
                 jamfHelperOptions["-defaultButton"] = 1
@@ -240,7 +244,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         generateCommand()
     }
     @IBAction func cancelbutton_action(_ sender: NSButton) {
-        if sender.identifier!.rawValue == "button1" {
+        if sender.identifier!.rawValue.contains("button1") {
             button2Cancel_button.state = NSControl.StateValue.off
             if sender.state.rawValue == 1 {
                 jamfHelperOptions["-cancelButton"] = 1
@@ -349,35 +353,38 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet var currentCommant_textview: NSTextView!
     
     @IBAction func preview_button(_ sender: Any) {
-        
-        let previewQ     = DispatchQueue(label: "com.jamf.previewQ", qos: DispatchQoS.background)
-        var optionsArray = [String]()
-//        var localStatus  = [String]()
-//        let pipe    = Pipe()
-        let task    = Process()
-        task.launchPath     = "/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper"
-        
-        for (option, value) in jamfHelperOptions {
-            optionsArray.append("\(option)")
-            if "\(value)" != "" {
-                optionsArray.append("\(value)")
-            }
-        }
-        
-        task.arguments      = optionsArray
-
-        previewQ.async {
-
-            task.launch()
+        if FileManager.default.fileExists(atPath: "/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper") {
+            let previewQ     = DispatchQueue(label: "com.jamf.previewQ", qos: DispatchQoS.background)
+            var optionsArray = [String]()
+    //        var localStatus  = [String]()
+    //        let pipe    = Pipe()
+            let task    = Process()
+            task.launchPath     = "/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper"
             
-            sleep(15)
+            for (option, value) in jamfHelperOptions {
+                optionsArray.append("\(option)")
+                if "\(value)" != "" {
+                    optionsArray.append("\(value)")
+                }
+            }
+            
+            task.arguments      = optionsArray
 
-            let task_kill        = Process()
-            task_kill.launchPath = "/usr/bin/killall"
-            task_kill.arguments  = ["jamfHelper"]
-            task_kill.launch()
-            task_kill.waitUntilExit()
-        
+            previewQ.async {
+
+                task.launch()
+                
+                sleep(15)
+
+                let task_kill        = Process()
+                task_kill.launchPath = "/usr/bin/killall"
+                task_kill.arguments  = ["jamfHelper"]
+                task_kill.launch()
+                task_kill.waitUntilExit()
+            
+            }
+        } else {
+            Alert().display(header: "Attention:", message: "Unable to locate jamfHelper.  Note, machine must be enrolled to use the Preview feature.")
         }
     }
     

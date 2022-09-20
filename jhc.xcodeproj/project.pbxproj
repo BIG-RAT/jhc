@@ -11,7 +11,6 @@
 		B58D1617263F62BD00BAD4DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D1616263F62BD00BAD4DE /* ViewController.swift */; };
 		B58D1619263F62C000BAD4DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58D1618263F62C000BAD4DE /* Assets.xcassets */; };
 		B58D161C263F62C000BAD4DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58D161A263F62C000BAD4DE /* Main.storyboard */; };
-		B5B80D0326482A9E001D4320 /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = B5B80D0226482A9E001D4320 /* Notes */; };
 		B5D135BB28D8E22300535308 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D135BA28D8E22300535308 /* Alert.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +42,7 @@
 			children = (
 				B58D1613263F62BD00BAD4DE /* jhc */,
 				B58D1612263F62BD00BAD4DE /* Products */,
+				B5D135BC28D96BB700535308 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +67,13 @@
 				B5B80D0226482A9E001D4320 /* Notes */,
 			);
 			path = jhc;
+			sourceTree = "<group>";
+		};
+		B5D135BC28D96BB700535308 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,7 +103,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					B58D1610263F62BD00BAD4DE = {
 						CreatedOnToolsVersion = 12.4;
@@ -126,7 +133,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5B80D0326482A9E001D4320 /* Notes in Resources */,
 				B58D1619263F62C000BAD4DE /* Assets.xcassets in Resources */,
 				B58D161C263F62C000BAD4DE /* Main.storyboard in Resources */,
 			);
@@ -193,6 +199,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -254,6 +261,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -280,8 +288,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = jhc/jhc.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = PS2F6S478M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = jhc/Info.plist;
@@ -290,7 +301,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.8.9;
+				MARKETING_VERSION = 0.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamfpse.jhc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -303,8 +314,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = jhc/jhc.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = PS2F6S478M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = jhc/Info.plist;
@@ -313,7 +327,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.8.9;
+				MARKETING_VERSION = 0.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamfpse.jhc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

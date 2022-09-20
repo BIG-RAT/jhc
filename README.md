@@ -19,4 +19,6 @@ The preview will quit after 15 seconds if left alone.
 
 ## History
 
+- 2022-09-19 v0.9.0: Add check for jamfHelper before generating preview.  Fix button1/button2 not updating command line as options are checked/unchecked.
+
 - 2021-05-09 v0.8.9: Initial post.

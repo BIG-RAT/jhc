@@ -121,6 +121,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         if sender.state.rawValue == 0 {
             iconPath_button.isEnabled = false
             iconSizeLabel(enableState: false)
+            jamfHelperOptions["-icon"] = nil
+            iconPath_button.url = URL(string: "\(NSHomeDirectory().replacingOccurrences(of: "/Library/Containers/com.jamfpse.jhc/Data", with: ""))")
+            generateCommand()
+            
         } else {
             iconPath_button.isEnabled = true
         }
@@ -516,6 +520,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         button2Label_textfield.delegate = self
         delayOptions_textfield.delegate = self
         timeOut_textfield.delegate      = self
+        
+        iconPath_button.url = URL(string: "\(NSHomeDirectory().replacingOccurrences(of: "/Library/Containers/com.jamfpse.jhc/Data", with: ""))")
         
         currentCommant_textview.font = NSFont(name: "Courier", size: CGFloat(14))
         

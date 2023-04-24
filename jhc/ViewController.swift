@@ -9,6 +9,8 @@ import Cocoa
 
 class ViewController: NSViewController, NSTextFieldDelegate {
     
+    var currentIconPath = ""
+    
     @IBAction func windowType_action(_ sender: NSButton) {
         var option = ""
         let selection = "\(sender.title)"
@@ -122,7 +124,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             iconPath_button.isEnabled = false
             iconSizeLabel(enableState: false)
             jamfHelperOptions["-icon"] = nil
-            iconPath_button.url = URL(string: "\(NSHomeDirectory().replacingOccurrences(of: "/Library/Containers/com.jamfpse.jhc/Data", with: ""))")
+            iconPath_button.url = (currentIconPath == "") ? URL(string: "\(NSHomeDirectory().replacingOccurrences(of: "/Library/Containers/com.jamfpse.jhc/Data", with: ""))"):URL(string: currentIconPath)
             generateCommand()
             
         } else {
@@ -344,6 +346,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
 //        print("thePath: \(theURL.path)")
         iconSizeLabel(enableState: true)
         jamfHelperOptions["-icon"] = "\"\(sender.url!.path)\""
+        currentIconPath = "\(sender.url!.deletingLastPathComponent().path)"
         iconSizeLabel(enableState: true)
         generateCommand()
     }
@@ -522,7 +525,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         timeOut_textfield.delegate      = self
         
         iconPath_button.url = URL(string: "\(NSHomeDirectory().replacingOccurrences(of: "/Library/Containers/com.jamfpse.jhc/Data", with: ""))")
-        
+        iconPath_button.allowedTypes = ["png", "jpg", "jpeg", "icns", "tiff"]
+
         currentCommant_textview.font = NSFont(name: "Courier", size: CGFloat(14))
         
         jamfHelperOptions["-windowType"] = "hud"

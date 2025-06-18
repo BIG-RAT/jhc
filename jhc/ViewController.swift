@@ -354,10 +354,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBAction func copy_Button(_ sender: Any) {
         let clipboard = NSPasteboard.general
         clipboard.clearContents()
-        clipboard.setString(currentCommant_textview.string, forType: .string)
+        clipboard.setString(currentCommand_textview.string, forType: .string)
     }
     
-    @IBOutlet var currentCommant_textview: NSTextView!
+    @IBOutlet var currentCommand_textview: NSTextView!
     
     @IBAction func preview_button(_ sender: Any) {
         if FileManager.default.fileExists(atPath: "/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper") {
@@ -368,10 +368,21 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             let task    = Process()
             task.launchPath     = "/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper"
             
+            print("jamfHelperOptions: \(jamfHelperOptions)")
             for (option, value) in jamfHelperOptions {
                 optionsArray.append("\(option)")
                 if "\(value)" != "" {
-                    optionsArray.append("\(value)")
+//                    if "\(value)".prefix(1) == "\"" && "\(value)".last == "\"" {
+//                        let valueString = "\(value)".dropLast(1).dropFirst()
+//                        var newString   = String(valueString)
+//                        newString = newString.replacingOccurrences(of: "\"", with: "\\\"")
+//                        print("value: \"\(newString)\"")
+//                        optionsArray.append("\"\(newString)\"")
+//                        
+//                    } else {
+                        print("value: \(value)")
+                        optionsArray.append("\(value)")
+//                    }
                 }
             }
             
@@ -411,18 +422,18 @@ class ViewController: NSViewController, NSTextFieldDelegate {
                     jamfHelperOptions["-iconSize"] = nil
                 }
              case "title":
-                 jamfHelperOptions["-title"] = "\"\(title_textfield.stringValue)\""
+                 jamfHelperOptions["-title"] = "\(title_textfield.stringValue)"
                  if jamfHelperOptions["-title"] as! String == "\"\"" {
                      jamfHelperOptions["-title"] = nil
                  }
              case "heading":
-                 jamfHelperOptions["-heading"] = "\"\(heading_textfield.stringValue)\""
+                 jamfHelperOptions["-heading"] = "\(heading_textfield.stringValue)"
                  if jamfHelperOptions["-heading"] as! String == "\"\"" {
-                     jamfHelperOptions["-heading"]     = nil
-                    jamfHelperOptions["-alignHeading"] = nil
+                     jamfHelperOptions["-heading"]      = nil
+                     jamfHelperOptions["-alignHeading"] = nil
                  }
              case "description":
-                jamfHelperOptions["-description"] = "\"\(description_textfield.stringValue)\""
+                jamfHelperOptions["-description"] = "\(description_textfield.stringValue)"
                 if jamfHelperOptions["-description"] as! String == "\"\"" {
                     jamfHelperOptions["-description"]      = nil
                     jamfHelperOptions["-alignDescription"] = nil
@@ -458,10 +469,6 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             if textField.identifier!.rawValue == "search" {
             }
         }
-        jamfHelperOptions["-title"] = "\"\(title_textfield.stringValue)\""
-        if jamfHelperOptions["-title"] as! String == "\"\"" {
-            jamfHelperOptions["-title"] = nil
-        }
         generateCommand()
     }
     
@@ -470,11 +477,19 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         for (option, value) in jamfHelperOptions {
             command = command + " \(option)"
             if "\(value)" != "" {
-                command = command + " \(value)"
+                switch option {
+                case "-title", "-heading", "-description":
+                    var escapedString = "\(value)".replacingOccurrences(of: "\"", with: "\\\"")
+                    escapedString = "\(escapedString)".replacingOccurrences(of: " !", with: " \\!")
+                    escapedString = "\(escapedString)".replacingOccurrences(of: "$", with: "\\$")
+                    command = command + " \"\(escapedString)\""
+                default:
+                    command = command + " \(value)"
+                }
             }
         }
         DispatchQueue.main.async { [self] in
-            currentCommant_textview.string = command
+            currentCommand_textview.string = command
         }
     }
     
@@ -527,7 +542,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         iconPath_button.url = URL(string: "\(NSHomeDirectory().replacingOccurrences(of: "/Library/Containers/com.jamfpse.jhc/Data", with: ""))")
         iconPath_button.allowedTypes = ["png", "jpg", "jpeg", "icns", "tiff"]
 
-        currentCommant_textview.font = NSFont(name: "Courier", size: CGFloat(14))
+        currentCommand_textview.font = NSFont(name: "Courier", size: CGFloat(14))
         
         jamfHelperOptions["-windowType"] = "hud"
 //        jamfHelperOptions["-windowPosition"] = "ul"

@@ -368,28 +368,16 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             let task    = Process()
             task.launchPath     = "/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper"
             
-            print("jamfHelperOptions: \(jamfHelperOptions)")
             for (option, value) in jamfHelperOptions {
                 optionsArray.append("\(option)")
                 if "\(value)" != "" {
-//                    if "\(value)".prefix(1) == "\"" && "\(value)".last == "\"" {
-//                        let valueString = "\(value)".dropLast(1).dropFirst()
-//                        var newString   = String(valueString)
-//                        newString = newString.replacingOccurrences(of: "\"", with: "\\\"")
-//                        print("value: \"\(newString)\"")
-//                        optionsArray.append("\"\(newString)\"")
-//                        
-//                    } else {
-                        print("value: \(value)")
-                        optionsArray.append("\(value)")
-//                    }
+                    optionsArray.append("\(value)")
                 }
             }
             
-            task.arguments      = optionsArray
+            task.arguments = optionsArray
 
             previewQ.async {
-
                 task.launch()
                 
                 sleep(15)
@@ -399,13 +387,11 @@ class ViewController: NSViewController, NSTextFieldDelegate {
                 task_kill.arguments  = ["jamfHelper"]
                 task_kill.launch()
                 task_kill.waitUntilExit()
-            
             }
         } else {
-            Alert().display(header: "Attention:", message: "Unable to locate jamfHelper.  Note, machine must be enrolled to use the Preview feature.")
+            Alert.shared.display(header: "Attention:", message: "Unable to locate jamfHelper.  Note, machine must be enrolled to use the Preview feature.")
         }
     }
-    
     
     let jamfHelperBinary = "/Library/Application\\ Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper"
     var jamfHelperOptions = [String:Any]()
@@ -546,7 +532,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         
         jamfHelperOptions["-windowType"] = "hud"
 //        jamfHelperOptions["-windowPosition"] = "ul"
-        generateCommand()
+        Task {
+            await ResourceCheck.shared.launchCheck()
+            generateCommand()
+        }
     }
 
     override var representedObject: Any? {

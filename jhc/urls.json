@@ -1,0 +1,7 @@
+{
+  "urls": {
+    "prohibited": "https://raw.githubusercontent.com/BIG-RAT/jhc/refs/heads/main/resources/version/version-info.json",
+    "version": "https://api.github.com/repos/BIG-RAT/jhc/releases/latest",
+    "latest": "https://github.com/repos/BIG-RAT/jhc/releases/latest"
+  }
+}

@@ -12,6 +12,10 @@
 		B58D1619263F62C000BAD4DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58D1618263F62C000BAD4DE /* Assets.xcassets */; };
 		B58D161C263F62C000BAD4DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58D161A263F62C000BAD4DE /* Main.storyboard */; };
 		B5D135BB28D8E22300535308 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D135BA28D8E22300535308 /* Alert.swift */; };
+		CE2966652E025CD1001F0FDC /* ResourceCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2966642E025CD1001F0FDC /* ResourceCheck.swift */; };
+		CE2966672E025D12001F0FDC /* RepositoryValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2966662E025D12001F0FDC /* RepositoryValues.swift */; };
+		CE2966692E025D29001F0FDC /* urls.json in Resources */ = {isa = PBXBuildFile; fileRef = CE2966682E025D29001F0FDC /* urls.json */; };
+		CE29666B2E025E1A001F0FDC /* LoggerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE29666A2E025E1A001F0FDC /* LoggerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		B58D161E263F62C000BAD4DE /* jhc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = jhc.entitlements; sourceTree = "<group>"; };
 		B5B80D0226482A9E001D4320 /* Notes */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 		B5D135BA28D8E22300535308 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		CE2966642E025CD1001F0FDC /* ResourceCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCheck.swift; sourceTree = "<group>"; };
+		CE2966662E025D12001F0FDC /* RepositoryValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryValues.swift; sourceTree = "<group>"; };
+		CE2966682E025D29001F0FDC /* urls.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = urls.json; sourceTree = "<group>"; };
+		CE29666A2E025E1A001F0FDC /* LoggerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +67,16 @@
 			children = (
 				B5D135BA28D8E22300535308 /* Alert.swift */,
 				B58D1614263F62BD00BAD4DE /* AppDelegate.swift */,
+				CE29666A2E025E1A001F0FDC /* LoggerExtension.swift */,
+				CE2966662E025D12001F0FDC /* RepositoryValues.swift */,
+				CE2966642E025CD1001F0FDC /* ResourceCheck.swift */,
 				B58D1616263F62BD00BAD4DE /* ViewController.swift */,
 				B58D1618263F62C000BAD4DE /* Assets.xcassets */,
 				B58D161A263F62C000BAD4DE /* Main.storyboard */,
 				B58D161D263F62C000BAD4DE /* Info.plist */,
 				B58D161E263F62C000BAD4DE /* jhc.entitlements */,
 				B5B80D0226482A9E001D4320 /* Notes */,
+				CE2966682E025D29001F0FDC /* urls.json */,
 			);
 			path = jhc;
 			sourceTree = "<group>";
@@ -133,6 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2966692E025D29001F0FDC /* urls.json in Resources */,
 				B58D1619263F62C000BAD4DE /* Assets.xcassets in Resources */,
 				B58D161C263F62C000BAD4DE /* Main.storyboard in Resources */,
 			);
@@ -145,9 +158,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2966652E025CD1001F0FDC /* ResourceCheck.swift in Sources */,
+				CE29666B2E025E1A001F0FDC /* LoggerExtension.swift in Sources */,
 				B5D135BB28D8E22300535308 /* Alert.swift in Sources */,
 				B58D1617263F62BD00BAD4DE /* ViewController.swift in Sources */,
 				B58D1615263F62BD00BAD4DE /* AppDelegate.swift in Sources */,
+				CE2966672E025D12001F0FDC /* RepositoryValues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +305,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = jhc/jhc.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -296,12 +313,13 @@
 				DEVELOPMENT_TEAM = PS2F6S478M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = jhc/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.9.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamfpse.jhc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -315,6 +333,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = jhc/jhc.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -322,12 +341,13 @@
 				DEVELOPMENT_TEAM = PS2F6S478M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = jhc/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.9.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamfpse.jhc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

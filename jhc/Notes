@@ -1,4 +1,0 @@
-Get process id of jamfHelper
-    processIdentifier
-        init?(url: URL)
-            Returns an instance of an SBApplication subclass that represents the target application identified by the given URL.

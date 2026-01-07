@@ -8,6 +8,8 @@ Download: [jhc](https://github.com/BIG-RAT/jhc/releases/latest/download/jhc.zip)
 
 ![alt text](./images/jhc.png "jamfHelper Constructor")
 
+Starting with version 1.1.0 the application will submit basic hardware, OS, and jamfHelper Constructor application usage to [TelemetryDeck](https://telemetrydeck.com). The data is sent anamously and used to aid in the development of the application. To opt out of data the sending of data click 'Opt out of analytics' at the bottom of the 'About jamfHelper Constructor' window.
+
 Just a little app to help build and preview a jamfHelper window.
 
 Icon selection can be accomplished either by dragging the icon onto the dropdown button or clicking the button and browsing to the file.
@@ -22,6 +24,8 @@ The preview will quit after 15 seconds if left alone.
 
 
 ## History
+
+- 2026-01-07 v1.1.0: Minor code cleanup. Add TelemetryDeck integration.
 
 - 2025-06-18 v1.0.0: Better handling of special characters. Add version check. Fix dock icon size.
 

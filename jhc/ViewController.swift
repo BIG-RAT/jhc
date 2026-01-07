@@ -481,8 +481,6 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     
     func iconDisplay(enable: Bool) {
         iconSizeSlider_button.isEnabled = enable
-//        iconSize_textfield.stringValue = ""
-//        iconSize_textfield.isEnabled = enable
     }
     
     func iconSizeLabel(enableState: Bool) {
@@ -513,7 +511,9 @@ class ViewController: NSViewController, NSTextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        TelemetryDeckConfig.optOut = defaults.bool(forKey: "optOut")
+        NSLog("TelemetryDeck: %@", TelemetryDeckConfig.optOut ? "disabled" : "enabled")
+        
         // Do any additional setup after loading the view.
         
         title_textfield.delegate        = self

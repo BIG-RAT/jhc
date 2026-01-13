@@ -35,6 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        configureTelemetryDeck()
         let resetVersionAlert_Skip = UserDefaults.standard.bool(forKey: "skipVersionAlert")
         resetVersionAlert_MenuItem.isEnabled = resetVersionAlert_Skip
         resetVersionAlert_MenuItem.isHidden  = !resetVersionAlert_Skip
